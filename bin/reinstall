@@ -1,0 +1,17 @@
+#!/bin/bash
+
+clear
+
+pnpm i ansi-colors bluebird chalk commander enquirer fast-glob lodash terminal-link sisteransi terminal-link p-pipe axios ansi-escapes handlebars
+
+pnpm i -D typesync typescript jest nodemon @types/node @types/jest @faker-js/faker concurrently npm-run-all prettier rimraf ts-jest @types/terminal-kit
+
+pnpm i -D eslint eslint-config-prettier eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-prettier eslint-plugin-promise
+pnpm i -D eslint-plugin-simple-import-sort jest nodemon npm-run-all prettier rimraf source-map-support ts-jest ts-node typescript typesync tslib
+
+npe scripts.fix "run-s fix:*"
+npe scripts.fix:format "prettier --write \"src/**/*.ts\""
+npe scripts.fix:lint "fix:lint"
+npe scripts.typesync "typesync"
+
+

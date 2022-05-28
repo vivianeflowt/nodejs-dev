@@ -1,0 +1,6 @@
+#!/bin/sh
+
+clear
+
+babel-node $1
+

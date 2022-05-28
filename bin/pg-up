@@ -1,0 +1,11 @@
+#!/bin/sh
+
+sudo systemctl start postgresql
+wait
+sudo systemctl status postgresql
+wait
+
+# sudo systemctl enable postgresql
+# sudo systemctl disable postgresql
+
+exit 0

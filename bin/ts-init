@@ -1,0 +1,112 @@
+#!/bin/bash
+
+clear
+
+rm -rf ./node_modules 2>/dev/null
+rm -rf ./dist 2>/dev/null
+rm -rf ./package-lock.json 2>/dev/null
+rm -rf ./.npm-cache 2>/dev/null
+rm -rf ./yarn.lock 2>/dev/null
+rm -rf ./*.tsbuildinfo 2>/dev/null
+rm -rf ./*.log 2>/dev/null
+
+
+
+
+# yarn install
+pnpm install
+
+
+npe scripts.reset "./scripts/reset.sh"
+
+npe scripts.clean "rimraf dist"
+npe scripts.prebuild "run-s clean"
+npe scripts.build "tsc -b"
+
+npe scripts.fix "run-s fix:*"
+npe scripts.fix:format "eslint \"{src,test}/**/*.ts\" --fix"
+npe scripts.fix:format "prettier --write src/**/*.{ts}"
+
+npe scripts.typesync "typesync"
+
+
+pnpm add fs-extra lodash fast-glob rimraf
+pnpm add -D typesync npm-run-all prettier jest ts-jest ts-node typescript
+
+pnpm add -D @types/node @types/jest
+
+
+echo "
+#!/bin/bash
+
+clear
+
+rm -rf ./dist
+rm -rf ./dist
+rm -rf ./log
+rm -rf ./@typescript
+rm -rf ./temp/*
+
+git add .
+git commit -m "step"
+git push
+
+"> upload.sh
+
+chmod +x ./upload.sh
+
+
+echo "
+#!/bin/bash
+
+clear
+
+rm -rf ./node_modules 2>/dev/null
+rm -rf ./dist 2>/dev/null
+rm -rf ./package-lock.json 2>/dev/null
+rm -rf ./.npm-cache 2>/dev/null
+rm -rf ./yarn.lock 2>/dev/null
+rm -rf ./*.tsbuildinfo 2>/dev/null
+rm -rf ./*.log 2>/dev/null
+
+yarn install
+
+"> reset.sh
+
+chmod +x ./reset.sh
+
+# echo '
+# {
+#   "compilerOptions": {
+#     "module": "commonjs",
+#     "declaration": true,
+#     "removeComments": true,
+#     "emitDecoratorMetadata": true,
+#     "experimentalDecorators": true,
+#     "target": "es2017",
+#     "sourceMap": true,
+#     "importHelpers": true,
+#     "outDir": "dist",
+#     "rootDir": "src",
+#     "noLib": false,
+#     "incremental": false,
+#     "skipLibCheck": true,
+#     "strictNullChecks": false,
+#     "noImplicitAny": false,
+#     "strictBindCallApply": false,
+#     "forceConsistentCasingInFileNames": true,
+#     "resolveJsonModule": true,
+#     "esModuleInterop": true,
+#   },
+#   "include": [
+#     "./src/**/*",
+#   ]
+# }
+# '> tsconfig.json
+
+
+
+pnpm run typesync
+
+
+

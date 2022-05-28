@@ -1,0 +1,159 @@
+#!/bin/sh
+
+clear
+
+# clear
+rm -rf ./.gitignore 2>/dev/null
+rm -f ./.package.json 2>/dev/null
+rm -f ./.package-lock.json 2>/dev/null
+rm -f ./.eslintignore 2>/dev/null
+rm -f ./.prettierignore 2>/dev/null
+rm -rf ./src 2>/dev/null
+rm -rf ./node_modules 2>/dev/null
+rm -rf ./test 2>/dev/null
+wait
+
+# make dir
+mkdir test
+mkdir src
+wait
+
+# gitignore
+echo "node_modules
+yarn.lock
+package-lock.json
+instalar
+tmp
+temp
+*.tmp
+*.temp
+*.log
+" >./.gitignore
+wait
+
+# add eslintignore
+echo "node_modules/
+*.gif
+*.png
+*.jpg
+*.jpeg
+tmp
+temp
+*.tmp
+*.temp
+*.log
+README.md
+yarn.lock
+package-lock.json
+docker-compose.yml
+.env
+.env.example
+.env.test
+dist
+build
+test
+tests
+" >./.eslintignore
+wait
+
+# add prettierignore
+echo "node_modules/
+*.gif
+*.png
+*.jpg
+*.jpeg
+tmp
+temp
+*.tmp
+*.temp
+*.log
+" >./.prettierignore
+wait
+
+echo '
+{
+  "extends": "airbnb",
+  "rules": {
+    "no-console": "off",
+    "prefer-arrow-callback": "off",
+    "func-names": "off",
+    "no-param-reassign": "off",
+    "arrow-parens": ["error", "as-needed"]
+  },
+  "env": {
+    "browser": true,
+    "jest": true
+  }
+}
+' >./.eslintrc
+wait
+sleep 1
+
+# npm init
+npm init -y
+clear
+wait
+
+# install dev dependency
+npm install --save-dev prettier eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y
+wait
+npm install --save-dev jest
+wait
+npm install --save-dev npe depcheck
+wait
+
+# default test
+echo "test('default', () => {
+  expect(true).toBe(true);
+});
+" >./test/default.test.js
+wait
+
+# index.js
+echo "
+'use strict'
+
+//const path = require('path')
+//const fs = require('fs')
+
+console.log('script');
+
+" >./src/index.js
+wait
+
+# edit package.json
+npx npe scripts.test "NODE_ENV=test && npx jest --watch --runInBand --verbose"
+wait
+npx npe scripts.depcheck "npx depcheck"
+wait
+npx npe scripts.formet "npx prettier --write ."
+wait
+npx npe scripts.eslint "npx eslint --fix ."
+wait
+npx npe scripts.dev "NODE_ENV=development && node ./src/index"
+wait
+npx npe scripts.start "node ./src/index"
+wait
+
+npx npe main "./src/index.js"
+wait
+
+npx npe version "0.1.1"
+wait
+
+npx npe engines.node "15.3.0"
+wait
+
+npm remove npe
+wait
+
+# audit fix
+npm audit fix
+wait
+
+# depcheck
+echo ' '
+echo ' '
+echo ' '
+npx depcheck
+wait

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+clear
+
+sucrase-node $1
+

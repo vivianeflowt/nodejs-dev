@@ -1,0 +1,48 @@
+FROM ubuntu:latest
+
+LABEL name="ubuntu-nodejs"
+LABEL version="latest"
+
+# replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# prevent dialog during apt install
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update \
+    && apt install -y \
+    apt-transport-https \
+    ca-certificates \
+    sudo \
+    dialog \
+    nano \
+    sudo \
+    && apt autoremove -y \
+    && apt clean -y \
+    && apt autoclean -y
+
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# add user "developer" as non-root user
+RUN useradd -ms /bin/bash developer
+
+# set permission for developer directory
+RUN chown developer:developer -R "home/developer"
+
+# Set sudoer for "developer"
+RUN echo 'developer ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
+
+# Switch to user "developer" from now
+USER developer
+
+RUN mkdir /home/developer/.ubuntu-nodejs
+
+COPY . /home/developer/.ubuntu-nodejs
+
+RUN exec /home/developer/.ubuntu-nodejs/install.sh
+
+WORKDIR /home/developer
+
+CMD ["/bin/zsh"]

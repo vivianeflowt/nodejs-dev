@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sudo systemctl stop mongod
+wait
+sudo systemctl status mongod
+wait
+
+exit 0

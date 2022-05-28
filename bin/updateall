@@ -1,0 +1,27 @@
+#!/bin/sh
+
+clear
+
+sudo apt update
+
+sudo apt -y upgrade
+
+# sudo apt-get check
+
+# sudo apt-get -f install
+
+# sudo dpkg --configure -a
+
+sudo apt-get clean
+
+sudo apt -y autoremove
+
+# sudo deborphan | xargs sudo apt-get -y remove --purge
+
+# sudo snap refresh --list
+
+# sudo npm install -g npm@latest
+
+# sudo npm update -g
+
+exit 0

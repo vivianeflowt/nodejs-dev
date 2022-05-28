@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo rm -rf $HOME/.local/share/Trash/*
+
+exit 0

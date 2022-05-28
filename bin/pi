@@ -1,0 +1,9 @@
+
+#!/bin/bash
+
+clear
+
+pnpm install $@
+
+sleep 1
+pnpm typesync

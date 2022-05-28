@@ -1,0 +1,10 @@
+#!/bin/sh
+
+clear
+
+pwd
+
+ln -sf /media/viviane/Viviane/shared-develop/link ./_LINK_
+
+
+

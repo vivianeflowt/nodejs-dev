@@ -1,0 +1,76 @@
+FROM ubuntu:latest
+
+LABEL name="oncode"
+LABEL version="latest"
+
+# replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# prevent dialog during apt install
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update \
+    && apt install -y \
+    apt-transport-https \
+    ca-certificates \
+    apt-utils \
+    sudo \
+    curl \
+    dialog \
+    git \
+    gnupg \
+    gzip \
+    htop \
+    lsb-release \
+    lsof \
+    nano \
+    net-tools \
+    openssh-client \
+    openssh-server \    
+    sudo \
+    tar \
+    unzip \
+    wget \    
+    zip \
+    zsh \
+    zsh-antigen \
+    fonts-powerline \
+    sqlite \
+    && apt autoremove -y \
+    && apt clean -y \
+    && apt autoclean -y
+
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+
+# add user "oncode" as non-root user
+RUN useradd -ms /bin/zsh oncode
+
+# set permission for oncode directory
+RUN chown oncode:oncode -R "home/oncode"
+
+# Set sudoer for "oncode"
+RUN echo 'oncode ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
+
+# Switch to user "oncode" from now
+USER oncode
+
+WORKDIR /home/oncode
+
+COPY ./.docker/install.sh  /home/oncode
+
+RUN exec /home/oncode/install.sh
+
+RUN sudo /etc/init.d/ssh restart
+
+# ENTRYPOINT ["entrypoint.sh"]
+
+# CMD ["node", "src/index.js"]
+
+EXPOSE 22
+EXPOSE 3000
+EXPOSE 4000
+
+CMD ["/bin/zsh"]

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+clear
+
+ts-node -r tsconfig-paths/register -r dotenv/config $1
+

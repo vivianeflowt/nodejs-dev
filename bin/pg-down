@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sudo systemctl stop postgresql
+wait
+sudo systemctl status postgresql
+wait
+
+exit 0

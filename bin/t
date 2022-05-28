@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# ts-node $@
+
+ts-node $@
