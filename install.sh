@@ -81,6 +81,41 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme spaceship-prompt/spaceship-prompt
 antigen apply
 
+
+echo ""
+echo "------------------------------- UBUNTU -----------------------------------"
+echo ""  
+
+sudo apt install -y --install-recommends flatpak snapd
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install -f -y ./google-chrome-stable_current_amd64.deb
+rm -rf google-chrome-stable_current_amd64.deb
+
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt update
+sudo apt install -y code
+
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo apt update
+apt-cache policy docker-ce
+sleep 10
+sudo apt install -y docker-ce
+
+sudo snap install postman
+sudo snap install heroku --classic
+sudo snap install insomnia-designer
+sudo snap install postbird
+
+
+sudo chsh -s $(which zsh)
+
+
+
 echo ""
 echo "------------------------------- SETUP -----------------------------------"
 echo ""  
@@ -99,32 +134,3 @@ npm completion >> ~/.zshrc
 
 pnpm install-completion
 pnpm install-completion zsh
-
-
-# sudo apt install -y --install-recommends flatpak snapd
-
-# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# sudo apt install -f -y ./google-chrome-stable_current_amd64.deb
-# rm -rf google-chrome-stable_current_amd64.deb
-
-# curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
-# sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-# sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-# sudo apt update
-# sudo apt install -y code
-
-
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-# sudo apt update
-# apt-cache policy docker-ce
-# sleep 10
-# sudo apt install -y docker-ce
-
-# sudo snap install postman
-# sudo snap install heroku --classic
-# sudo snap install insomnia-designer
-# sudo snap install postbird
-
-
-# sudo chsh -s $(which zsh)
