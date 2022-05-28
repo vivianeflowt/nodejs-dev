@@ -123,11 +123,15 @@ echo ""
 mkdir ~/bin
 
 
+cp ./script/* ~/bin 
+
+
 echo 'alias c="code .'>> ~/.zshrc
 echo 'alias cc="git add . && cz .'>> ~/.zshrc
 echo 'PATH="$HOME/bin:$PATH"'>> ~/.zshrc
 
-export PATH="$HOME/mybin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'>> ~/.zshrc
 
 npm completion >> ~/.zshrc
