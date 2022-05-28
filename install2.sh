@@ -2,6 +2,23 @@
 
 cd ~
 
+zsh
+
+curl -L git.io/antigen > antigen.zsh
+source antigen.zsh
+
+antigen init 
+antigen bundle git
+antigen bundle pip
+antigen bundle python
+antigen bundle command-not-found
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen theme spaceship-prompt/spaceship-prompt
+antigen apply
+
+
 echo ""
 echo "------------------------------- INSTALL - NVM ------------------------------"
 echo ""
@@ -32,24 +49,6 @@ echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'>> ~/.bashrc
 echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"'>> ~/.zshrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'>> ~/.zshrc
 
-echo ""
-echo "-------------------------- INSTALL NODEJS PACKAGES --------------------------------"
-echo ""          
-
-npm update -g npm
-
-curl -fsSL https://get.pnpm.io/install.sh | sh -
-
-npm install -g yarn
-npm install -g typescript ts-node ts-node-dev tslib typesync
-npm install -g jest ts-jest
-npm install -g prettier eslint
-npm install -g rimraf syncpack release-it commitizen cz-conventional-changelog ultra-runner depcheck
-npm install -g memfs unionfs core.js lodash
-npm install -g @vercel/ncc esbuild esbuild-register 
-npm install -g rollup bundle-deps microbundle webpack webpack-cli
-npm install -g @nestjs/cli
-npm install -g nodemon concurrently
 
 echo ""
 echo "------------------------------- UBUNTU -----------------------------------"
