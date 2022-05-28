@@ -38,19 +38,15 @@ echo ""
 echo "------------------------------- SETUP -----------------------------------"
 echo ""  
 
-mkdir ~/bin
-
-cp ./scripts/* ~/bin 
-
 echo 'alias c="code .'>> ~/.zshrc
 echo 'alias cc="git add . && cz .'>> ~/.zshrc
 echo 'PATH="$HOME/bin:$PATH"'>> ~/.zshrc
-
-export PATH="$HOME/bin:$PATH"
 
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'>> ~/.zshrc
 
 npm completion >> ~/.zshrc
 
-pnpm install-completion
-pnpm install-completion zsh
+# curl -fsSL https://get.pnpm.io/install.sh | sh -
+
+# pnpm install-completion
+# pnpm install-completion zsh
