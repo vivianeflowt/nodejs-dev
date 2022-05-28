@@ -72,10 +72,9 @@ antigen init
 antigen bundle git
 antigen bundle pip
 antigen bundle python
-antigen bundle heroku
 antigen bundle command-not-found
-antigen bundle buonomo/yarn-completion
-antigen bundle lukechilds/zsh-nvm
+# antigen bundle buonomo/yarn-completion
+# antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
