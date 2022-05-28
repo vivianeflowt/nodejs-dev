@@ -2,12 +2,14 @@
 
 cd ~
 
+sudo apt update -y
+sudo apt install -y git curl wget zsh 
+
 echo ""
 echo "------------------------ INSTALL - APT-PACKAGES ----------------------------"
 echo ""
 
-sudo apt update -y
-sudo apt install -y git htop curl wget tar nano net-tools build-essential zsh zsh-antigen fonts-powerline
+sudo apt install -y htop tar nano net-tools build-essential zsh zsh-antigen fonts-powerline
 sudo apt install -y apt-transport-https ca-certificates software-properties-common sqlite gparted
 
 echo ""
@@ -115,16 +117,13 @@ sudo snap install postbird
 sudo chsh -s $(which zsh)
 
 
-
 echo ""
 echo "------------------------------- SETUP -----------------------------------"
 echo ""  
 
 mkdir ~/bin
 
-
-cp ./script/* ~/bin 
-
+cp ./scripts/* ~/bin 
 
 echo 'alias c="code .'>> ~/.zshrc
 echo 'alias cc="git add . && cz .'>> ~/.zshrc
