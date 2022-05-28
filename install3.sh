@@ -75,8 +75,6 @@ antigen bundle git
 antigen bundle pip
 antigen bundle python
 antigen bundle command-not-found
-# antigen bundle buonomo/yarn-completion
-# antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -94,12 +92,6 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -f -y ./google-chrome-stable_current_amd64.deb
 rm -rf google-chrome-stable_current_amd64.deb
 
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
-sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt update
-sudo apt install -y code
-
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
@@ -112,7 +104,14 @@ sudo snap install postman
 sudo snap install heroku --classic
 sudo snap install insomnia-designer
 sudo snap install postbird
-
+sudo snap install postman --classic
+sudo snap install vlc --classic
+sudo snap install code --classic
+sudo snap install slack --classic
+sudo snap install whatsapp --classic
+sudo snap install telegram-desktop
+sudo snap install --classic kubectl
+sudo apt install -y docker-compose
 
 sudo chsh -s $(which zsh)
 
