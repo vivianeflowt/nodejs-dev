@@ -73,18 +73,7 @@ antigen bundle git
 antigen bundle pip
 antigen bundle python
 antigen bundle heroku
-antigen bundle autojump
-antigen bundle compleat
-antigen bundle git-extras
-antigen bundle git-flow
-antigen bundle npm
 antigen bundle command-not-found
-
-# NVM bundle
-export NVM_LAZY_LOAD=true
-antigen bundle lukechilds/zsh-nvm
-antigen bundle Sparragus/zsh-auto-nvm-use
-
 antigen bundle buonomo/yarn-completion
 antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-completions
@@ -92,8 +81,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme spaceship-prompt/spaceship-prompt
 antigen apply
-
-sudo chsh -s $(which zsh)
 
 echo ""
 echo "------------------------------- SETUP -----------------------------------"
@@ -140,3 +127,5 @@ pnpm install-completion zsh
 # sudo snap install insomnia-designer
 # sudo snap install postbird
 
+
+# sudo chsh -s $(which zsh)
